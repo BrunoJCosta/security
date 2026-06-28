@@ -11,6 +11,7 @@ public enum Keys {
 
     BOOK("book"),
     CAMBIO("cambio"),
+    GATEWAY("gateway"),
     STOCK("stock");
 
     private final String value;
