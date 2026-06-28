@@ -1,4 +1,4 @@
-package br.com.security.secret;
+package br.com.security.domain;
 
 import br.com.security.exception.AlgorithmInvalid;
 import lombok.Getter;
