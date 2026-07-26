@@ -1,7 +1,7 @@
 package br.com.security.domain.secret;
 
 import br.com.security.domain.Keys;
-import br.com.security.domain.TokenDTO;
+import br.com.security.domain.ScopeDTO;
 
 public interface SecretProtocol {
 
@@ -9,5 +9,5 @@ public interface SecretProtocol {
 
     Keys getKey();
 
-    TokenDTO getToken();
+    ScopeDTO getScope();
 }
