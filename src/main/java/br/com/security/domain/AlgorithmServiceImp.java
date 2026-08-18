@@ -15,11 +15,12 @@ class AlgorithmServiceImp implements AlgorithmService {
     public final HashService hashService;
 
     @Override
-    public TokenDTO get(String key) throws AlgorithmInvalid,
+    public TokenDTO get(String key, String target) throws AlgorithmInvalid,
             NoSuchAlgorithmException, SignatureException, InvalidKeyException {
 
         Keys keys = Keys.get(key);
-        return hashService.getToken(keys);
+        Keys keyTarget = Keys.get(target);
+        return hashService.getToken(keys, keyTarget);
     }
 
 

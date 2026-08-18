@@ -27,14 +27,17 @@ class HashService {
         this.assinaturaService = assinaturaService;
     }
 
-    public TokenDTO getToken(Keys keys) throws AlgorithmInvalid, NoSuchAlgorithmException, SignatureException, InvalidKeyException {
+    public TokenDTO getToken(Keys keys, Keys keyTarget) throws AlgorithmInvalid, NoSuchAlgorithmException, SignatureException, InvalidKeyException {
         SecretProtocol protocol = getProtocol(keys);
         ScopeDTO tokenProtocolo = protocol.getScope();
+
+        SecretProtocol target = getProtocol(keyTarget);
 
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("security")
                 .expiresAt(Instant.now().plusSeconds(30))
                 .subject(tokenProtocolo.getSub())
+                .audience(List.of(target.getKey().name()))
                 .claim("scope", tokenProtocolo.getScope())
                 .build();
 
@@ -42,7 +45,7 @@ class HashService {
                 .encode(JwtEncoderParameters.from(claims))
                 .getTokenValue();
 
-        String assinatura = assinaturaService.get(protocol.getSecret());
+        String assinatura = assinaturaService.get(target.getSecret());
 
         return new TokenDTO(token, assinatura);
     }

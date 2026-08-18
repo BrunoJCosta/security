@@ -3,7 +3,6 @@ package br.com.security.domain.secret;
 import br.com.security.domain.KeyAccess;
 import br.com.security.domain.Keys;
 import br.com.security.domain.ScopeDTO;
-import br.com.security.domain.TokenDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

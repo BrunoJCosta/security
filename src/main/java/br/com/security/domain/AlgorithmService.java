@@ -8,5 +8,5 @@ import java.security.SignatureException;
 
 public interface AlgorithmService {
 
-    TokenDTO get(String key) throws AlgorithmInvalid, NoSuchAlgorithmException, SignatureException, InvalidKeyException;
+    TokenDTO get(String key, String target) throws AlgorithmInvalid, NoSuchAlgorithmException, SignatureException, InvalidKeyException;
 }
