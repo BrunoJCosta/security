@@ -2,6 +2,7 @@ package br.com.security.domain;
 
 import br.com.security.exception.AlgorithmInvalid;
 import br.com.security.domain.secret.SecretProtocol;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import java.util.Objects;
 
 @Component
 @PropertySource(value = "classpath:application.yaml", encoding = "UTF-8")
+@Slf4j
 class HashService {
 
     private final List<SecretProtocol> secretProtocol;
@@ -41,11 +43,15 @@ class HashService {
                 .claim("scope", tokenProtocolo.getScope())
                 .build();
 
+        log.debug("acessou os 2 protocolo e gerou o jwt com os acessos");
+
         String token = jwtEncoder
                 .encode(JwtEncoderParameters.from(claims))
                 .getTokenValue();
 
         String assinatura = assinaturaService.get(target.getSecret());
+
+        log.debug("montou o token de acesso e a assinatura");
 
         return new TokenDTO(token, assinatura);
     }
