@@ -1,0 +1,24 @@
+networks:
+  ms:
+    name: ms-network
+    driver: bridge
+    external: true
+
+services:
+  back:
+    build:
+      context: .
+    container_name: security
+    image: img_security_java
+    ports:
+      - "2734:2734"
+    expose:
+      - 2734
+    environment:
+      BOOK: ${BOOK_SECRET}
+      CAMBIO: ${CAMBIO_SECRET}
+      STOCK: ${STOCK_SECRET}
+      GATEWAY: ${GATEWAY_SECRET}
+      HOST_EUREKA: eureka
+    networks:
+      - ms

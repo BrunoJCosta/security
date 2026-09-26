@@ -1,0 +1,11 @@
+server:
+  port: 2734
+
+spring:
+  application:
+    name: security-test
+
+security:
+  jwt:
+    private-key: classpath:keys/private.pem
+    public-key: classpath:keys/public.pem
